@@ -1,0 +1,13 @@
+{
+  "video_type": "cover_audio_reactive",
+  "resolution": [1920, 1080],
+  "fps": 30,
+  "cover_size": 800,
+  "zoom_strength": 0.3,
+  "shake_strength": 4.0,
+  "bloom_strength": 1.5,
+  "blur_sigma": 40,
+  "bitrate": "12M",
+  "tracks_count": 2,
+  "crossfade_ms": 4000
+}
