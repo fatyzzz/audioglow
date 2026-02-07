@@ -1,4 +1,5 @@
 import colorsys
+
 import numpy as np
 from PIL import Image
 
@@ -11,7 +12,9 @@ def extract_palette(cover_path, count=5):
     rgb = pixels / 255.0
     mx = rgb.max(axis=1)
     mn = rgb.min(axis=1)
-    sat = np.where(mx > 1e-6, (mx - mn) / mx, 0.0)
+    sat = np.where(
+        mx > 1e-6, np.divide(mx - mn, mx, where=mx > 1e-6, out=np.zeros_like(mx)), 0.0
+    )
 
     luma = np.dot(pixels, [0.299, 0.587, 0.114])
 
@@ -31,13 +34,18 @@ def extract_palette(cover_path, count=5):
             (0.15, 0.15, 0.15),
         ]
 
-    chosen = valid[np.random.choice(len(valid), count, replace=False)]
+    hues = np.array(
+        [colorsys.rgb_to_hls(float(r), float(g), float(b))[0] for r, g, b in valid]
+    )
+    order = np.argsort(hues)
+    indices = np.linspace(0, len(order) - 1, count, dtype=int)
+    chosen = valid[order[indices]]
 
     final = []
     for r, g, b in chosen:
-        h, l, s = colorsys.rgb_to_hls(float(r), float(g), float(b))
-        s = max(s, 0.35)
-        l = min(max(l, 0.35), 0.75)
-        rr, gg, bb = colorsys.hls_to_rgb(h, l, s)
+        hue, lit, sat = colorsys.rgb_to_hls(float(r), float(g), float(b))
+        sat = max(sat, 0.35)
+        lit = min(max(lit, 0.35), 0.75)
+        rr, gg, bb = colorsys.hls_to_rgb(hue, lit, sat)
         final.append((float(rr), float(gg), float(bb)))
     return final

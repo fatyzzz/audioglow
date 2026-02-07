@@ -1,6 +1,7 @@
 import librosa
 import numpy as np
 from scipy.interpolate import interp1d
+from scipy.signal import lfilter
 
 
 class AudioAnalyzer:
@@ -109,8 +110,4 @@ class AudioAnalyzer:
         return (data - val_min) / (val_max - val_min)
 
     def _ema(self, data, alpha):
-        s = np.zeros_like(data)
-        s[0] = data[0]
-        for i in range(1, len(data)):
-            s[i] = alpha * data[i] + (1 - alpha) * s[i - 1]
-        return s
+        return lfilter([alpha], [1.0, -(1.0 - alpha)], data).astype(data.dtype)

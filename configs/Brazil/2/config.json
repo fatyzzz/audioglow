@@ -9,5 +9,6 @@
   "blur_sigma": 40,
   "bitrate": "12M",
   "tracks_count": 2,
-  "crossfade_ms": 4000
+  "crossfade_ms": 4000,
+  "overlay_path": "overlays/particle.mp4"
 }

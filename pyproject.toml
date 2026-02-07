@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "audioglow"
+version = "0.1.0"
+description = "GPU-accelerated audio-reactive music video generator"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Fatyzzz" },
+]
+keywords = ["audio", "visualizer", "music-video", "opengl", "gpu"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+]
+dependencies = [
+    "moderngl>=5.12",
+    "glcontext>=3.0",
+    "numpy>=2.0",
+    "scipy>=1.12",
+    "librosa>=0.10",
+    "soundfile>=0.12",
+    "soxr>=0.5",
+    "Pillow>=10.0",
+    "pydub>=0.25",
+    "opencv-python>=4.8",
+]
+
+[project.urls]
+Homepage = "https://github.com/fatyzzz/audioglow"
+Repository = "https://github.com/fatyzzz/audioglow"
+Issues = "https://github.com/fatyzzz/audioglow/issues"
+
+[project.scripts]
+audioglow = "audioglow.__main__:main"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "overlays/",
+    "configs/",
+    "downloads/",
+    "outputs/",
+    ".venv/",
+    ".mypy_cache/",
+    ".ruff_cache/",
+    ".github/",
+    ".claude/",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["audioglow"]

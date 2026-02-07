@@ -1,5 +1,4 @@
 from pydub import AudioSegment
-from pathlib import Path
 
 
 class AudioMixer:

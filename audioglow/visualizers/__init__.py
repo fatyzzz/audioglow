@@ -1,7 +1,7 @@
+from .combo import ComboVisualizer
 from .cover_glow import CoverGlowVisualizer
 from .overlay_green import OverlayGreenVisualizer
 from .overlay_spectrum import OverlaySpectrumVisualizer
-from .combo import ComboVisualizer
 
 VISUALIZERS = {
     "cover_audio_reactive": CoverGlowVisualizer,

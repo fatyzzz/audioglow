@@ -1,11 +1,46 @@
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
 .venv/
+env/
 venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+pyrightconfig.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
 outputs/
 downloads/
+overlays/
+configs/*/cover.*
+configs/*/overlay.*
+
+# Media (not part of the package)
 *.mp4
-*.wav
 *.mp3
+*.wav
+*.flac
+*.ogg
+*.opus
+*.m4a
+
+# Secrets
 .env
-.DS_Store
