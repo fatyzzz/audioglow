@@ -28,7 +28,7 @@ Thumbs.db
 
 # Project specific
 outputs/
-downloads/
+downloads
 overlays/
 configs/*/cover.*
 configs/*/overlay.*
