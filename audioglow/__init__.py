@@ -1,6 +1,6 @@
 """audioglow - GPU-accelerated audio-reactive music video generator."""
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 from audioglow.api import render_video
 
