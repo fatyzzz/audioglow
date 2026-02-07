@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "audioglow"
-version = "0.1.1"
+version = "0.1.2"
 description = "GPU-accelerated audio-reactive music video generator"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -46,7 +46,7 @@ audioglow = "audioglow.__main__:main"
 exclude = [
     "overlays/",
     "configs/",
-    "downloads/",
+    "downloads",
     "outputs/",
     ".venv/",
     ".mypy_cache/",
