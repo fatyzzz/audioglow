@@ -12,6 +12,7 @@ from audioglow.config import load_config
 from audioglow.engine import RenderEngine
 from audioglow.mixer import AudioMixer
 from audioglow.palette import extract_palette
+from audioglow.result import RenderResult
 
 
 def _select_h264_encoder():
@@ -57,7 +58,9 @@ def _ffmpeg_writer(process, frame_queue):
             break
 
 
-def _render_pipeline(cfg: dict, track_dirs: list[Path], output_file: Path) -> Path:
+def _render_pipeline(
+    cfg: dict, track_dirs: list[Path], output_file: Path
+) -> RenderResult:
     """Core render pipeline. Used by both the public API and CLI.
 
     Args:
@@ -66,7 +69,7 @@ def _render_pipeline(cfg: dict, track_dirs: list[Path], output_file: Path) -> Pa
         output_file: Destination .mp4 path.
 
     Returns:
-        Path to the rendered output file.
+        RenderResult with video_path and timestamps.
     """
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -188,7 +191,8 @@ def _render_pipeline(cfg: dict, track_dirs: list[Path], output_file: Path) -> Pa
         )
 
     print(f"\n[DONE] Saved to: {output_file}")
-    return output_file
+    timestamps = [{"title": t["title"], "start_ms": t["start_ms"]} for t in playlist]
+    return RenderResult(video_path=output_file, timestamps=timestamps)
 
 
 def process_job(config_path: Path, tracks_dir: Path, output_dir: Path):

@@ -18,14 +18,14 @@ pip install audioglow
 from audioglow import render_video
 
 # Minimal — just tracks, output, and video type:
-render_video(
+result = render_video(
     tracks=["tracks/my_song/"],
     output="output.mp4",
     video_type="cover_audio_reactive",
 )
 
 # Custom settings:
-render_video(
+result = render_video(
     tracks=["tracks/song1/", "tracks/song2/"],
     output="mix.mp4",
     video_type="cover_audio_reactive",
@@ -35,6 +35,10 @@ render_video(
     bitrate="16M",
     crossfade_ms=3000,
 )
+
+# result.video_path  — Path to the rendered .mp4
+# result.timestamps  — track start times:
+#   [{"title": "song1", "start_ms": 0}, {"title": "song2", "start_ms": 187000}]
 ```
 
 Each track directory must contain:

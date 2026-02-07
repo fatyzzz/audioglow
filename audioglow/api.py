@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from audioglow.config import build_config
+from audioglow.result import RenderResult
 
 
 def render_video(
@@ -24,7 +25,7 @@ def render_video(
     overlay_path: str | Path | None = None,
     config_file: str | Path | None = None,
     tracks_count: int | None = None,
-) -> Path:
+) -> RenderResult:
     """Render an audio-reactive music video.
 
     Args:
@@ -50,7 +51,8 @@ def render_video(
         tracks_count: Max number of tracks to use from the list.
 
     Returns:
-        Path to the rendered output .mp4 file.
+        RenderResult with ``video_path`` and ``timestamps``.
+        Path-compatible: works with ``open()``, ``Path()``, ``os.fspath()``.
 
     Raises:
         FileNotFoundError: If track directories or overlay video not found.
